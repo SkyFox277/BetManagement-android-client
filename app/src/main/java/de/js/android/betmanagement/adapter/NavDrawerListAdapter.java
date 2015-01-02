@@ -46,6 +46,8 @@ public class NavDrawerListAdapter extends BaseAdapter {
                     context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = mInflater.inflate(R.layout.drawer_list_item, null);
         }
+
+        //TODO für die Einstellungen einen Separator einfügen
          
         ImageView imgIcon = (ImageView) convertView.findViewById(R.id.icon);
         TextView txtTitle = (TextView) convertView.findViewById(R.id.title);

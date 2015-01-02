@@ -23,7 +23,9 @@ import android.widget.ListView;
 
 import de.js.android.betmanagement.activities.SettingsActivity;
 import de.js.android.betmanagement.adapter.NavDrawerListAdapter;
-import de.js.android.betmanagement.fragments.BetsFragment;
+import de.js.android.betmanagement.fragments.BetItemFragment;
+import de.js.android.betmanagement.fragments.BetItemFragment;
+import de.js.android.betmanagement.fragments.CommingSoonFragment;
 import de.js.android.betmanagement.fragments.CommunityFragment;
 import de.js.android.betmanagement.fragments.HomeFragment;
 import de.js.android.betmanagement.fragments.PagesFragment;
@@ -32,7 +34,7 @@ import de.js.android.betmanagement.fragments.WhatsHotFragment;
 import de.js.android.betmanagement.model.NavDrawerItem;
 
 
-public class MainActivity extends Activity implements BetsFragment.OnFragmentInteractionListener {
+public class MainActivity extends Activity implements BetItemFragment.OnFragmentInteractionListener {
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
@@ -74,14 +76,14 @@ public class MainActivity extends Activity implements BetsFragment.OnFragmentInt
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
 		// Bets
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1), true, "999"));
-//		// Photos
-//		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-//		// Communities, Will add a counter here
-//		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1), true, "22"));
-//		// Pages
-//		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-//		// What's hot, We  will add a counter here
-//		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1), true, "50+"));
+		// Photos
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
+		// Communities, Will add a counter here
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1), true, "22"));
+		// Pages
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
+		// What's hot, We  will add a counter here
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1), true, "50+"));
         // Settings
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
 
@@ -127,7 +129,7 @@ public class MainActivity extends Activity implements BetsFragment.OnFragmentInt
 	}
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onFragmentInteraction(String id) {
 
     }
 
@@ -186,25 +188,29 @@ public class MainActivity extends Activity implements BetsFragment.OnFragmentInt
 		case 0:
 			fragment = new HomeFragment();
 			break;
+
 		case 1:
 
-			fragment = new BetsFragment();
+			fragment = new BetItemFragment();
 			break;
-//		case 2:
-//			fragment = new PhotosFragment();
-//			break;
-//		case 3:
-//
-//            //startActivity(new Intent(MainActivity.this, GroupsActivity.class));
-//			fragment = new CommunityFragment();
-//			break;
-//		case 4:
-//			fragment = new PagesFragment();
-//			break;
-//		case 5:
-//			fragment = new WhatsHotFragment();
-//			break;
-        case 2:
+
+		case 2:
+			fragment = new CommingSoonFragment();
+			break;
+
+		case 3:
+			fragment = new CommingSoonFragment();
+			break;
+
+		case 4:
+			fragment = new PagesFragment();
+			break;
+
+		case 5:
+			fragment = new WhatsHotFragment();
+			break;
+
+        case 6:
             startActivity(new Intent(MainActivity.this, SettingsActivity.class));
             break;
 
