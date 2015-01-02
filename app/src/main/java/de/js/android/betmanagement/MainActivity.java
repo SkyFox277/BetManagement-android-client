@@ -10,6 +10,7 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -20,12 +21,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import de.js.android.betmanagement.activities.GroupsActivity;
 import de.js.android.betmanagement.activities.SettingsActivity;
 import de.js.android.betmanagement.adapter.NavDrawerListAdapter;
 import de.js.android.betmanagement.fragments.BetsFragment;
 import de.js.android.betmanagement.fragments.CommunityFragment;
-import de.js.android.betmanagement.fragments.FindPeopleFragment;
 import de.js.android.betmanagement.fragments.HomeFragment;
 import de.js.android.betmanagement.fragments.PagesFragment;
 import de.js.android.betmanagement.fragments.PhotosFragment;
@@ -33,7 +32,7 @@ import de.js.android.betmanagement.fragments.WhatsHotFragment;
 import de.js.android.betmanagement.model.NavDrawerItem;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements BetsFragment.OnFragmentInteractionListener {
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
@@ -75,14 +74,14 @@ public class MainActivity extends Activity {
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
 		// Bets
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1), true, "999"));
-		// Photos
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-		// Communities, Will add a counter here
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1), true, "22"));
-		// Pages
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-		// What's hot, We  will add a counter here
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1), true, "50+"));
+//		// Photos
+//		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
+//		// Communities, Will add a counter here
+//		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1), true, "22"));
+//		// Pages
+//		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
+//		// What's hot, We  will add a counter here
+//		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1), true, "50+"));
         // Settings
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
 
@@ -127,7 +126,12 @@ public class MainActivity extends Activity {
         //initialiseFragmentButtonClicks();
 	}
 
-	/**
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    /**
 	 * Slide menu item click listener
 	 * */
 	private class SlideMenuClickListener implements
@@ -183,23 +187,24 @@ public class MainActivity extends Activity {
 			fragment = new HomeFragment();
 			break;
 		case 1:
+
 			fragment = new BetsFragment();
 			break;
-		case 2:
-			fragment = new PhotosFragment();
-			break;
-		case 3:
-
-            //startActivity(new Intent(MainActivity.this, GroupsActivity.class));
-			fragment = new CommunityFragment();
-			break;
-		case 4:
-			fragment = new PagesFragment();
-			break;
-		case 5:
-			fragment = new WhatsHotFragment();
-			break;
-        case 6:
+//		case 2:
+//			fragment = new PhotosFragment();
+//			break;
+//		case 3:
+//
+//            //startActivity(new Intent(MainActivity.this, GroupsActivity.class));
+//			fragment = new CommunityFragment();
+//			break;
+//		case 4:
+//			fragment = new PagesFragment();
+//			break;
+//		case 5:
+//			fragment = new WhatsHotFragment();
+//			break;
+        case 2:
             startActivity(new Intent(MainActivity.this, SettingsActivity.class));
             break;
 
@@ -210,7 +215,8 @@ public class MainActivity extends Activity {
 		if (fragment != null) {
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
-					.replace(R.id.frame_container, fragment).commit();
+					.replace(R.id.frame_container, fragment)
+                    .commit();
 
 			// update selected item and title, then close the drawer
 			mDrawerList.setItemChecked(position, true);
