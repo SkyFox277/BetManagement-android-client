@@ -21,7 +21,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import de.js.android.betmanagement.activities.GroupsActivity;
 import de.js.android.betmanagement.activities.SettingsActivity;
+import de.js.android.betmanagement.activities.TestActivity1;
+import de.js.android.betmanagement.activities.TestListActivity;
 import de.js.android.betmanagement.adapter.NavDrawerListAdapter;
 import de.js.android.betmanagement.fragments.BetItemFragment;
 import de.js.android.betmanagement.fragments.BetItemFragment;
@@ -38,6 +41,7 @@ public class MainActivity extends Activity implements BetItemFragment.OnFragment
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
+    private int lastPosition = -1;
 
 	// nav drawer title
 	private CharSequence mDrawerTitle;
@@ -199,11 +203,13 @@ public class MainActivity extends Activity implements BetItemFragment.OnFragment
 			break;
 
 		case 3:
-			fragment = new CommingSoonFragment();
+			//fragment = new CommingSoonFragment();
+            fragment = new PagesFragment();
 			break;
 
 		case 4:
-			fragment = new PagesFragment();
+			//fragment = new PagesFragment();
+            startActivity(new Intent(MainActivity.this, TestListActivity.class));
 			break;
 
 		case 5:

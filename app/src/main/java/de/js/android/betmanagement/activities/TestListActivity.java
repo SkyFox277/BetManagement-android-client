@@ -1,16 +1,14 @@
-package de.js.android.betmanagement.fragments;
+package de.js.android.betmanagement.activities;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.ListFragment;
 import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.android.volley.Response;
@@ -25,15 +23,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.js.android.betmanagement.MainActivity;
 import de.js.android.betmanagement.R;
 import de.js.android.betmanagement.adapter.MovieListAdapter;
 import de.js.android.betmanagement.model.Movie;
 import de.js.android.betmanagement.volley.VolleySingleton;
 
-public class PagesFragment extends Fragment {
+public class TestListActivity extends Activity {
 
-    private static final String TAG = PagesFragment.class.getSimpleName();
+    // Log tag
+    private static final String TAG = TestListActivity.class.getSimpleName();
 
     // Movies json url
     private static final String url = "http://api.androidhive.info/json/movies.json";
@@ -42,30 +40,23 @@ public class PagesFragment extends Fragment {
     private ListView listView;
     private MovieListAdapter adapter;
 
-	public PagesFragment(){}
-	
-	@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_test_list);
 
-        View rootView = inflater.inflate(R.layout.fragment_pages, container, false);
-
-        Activity activity = getActivity();
-        //super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-
-        listView = (ListView) rootView.findViewById(R.id.movielist_container);
-        adapter = new MovieListAdapter(activity, movieList);
+        listView = (ListView) findViewById(R.id.testlist);
+        adapter = new MovieListAdapter(this, movieList);
         listView.setAdapter(adapter);
 
-//        pDialog = new ProgressDialog(activity);
-//        // Showing progress dialog before making http request
-//        pDialog.setMessage("Loading...");
-//        pDialog.show();
+        pDialog = new ProgressDialog(this);
+        // Showing progress dialog before making http request
+        pDialog.setMessage("Loading...");
+        pDialog.show();
 
-//        // changing action bar color
-//        activity.getActionBar().setBackgroundDrawable(
-//                new ColorDrawable(Color.parseColor("#1b1b1b")));
+        // changing action bar color
+        getActionBar().setBackgroundDrawable(
+                new ColorDrawable(Color.parseColor("#1b1b1b")));
 
         // Creating volley request obj
         JsonArrayRequest movieReq = new JsonArrayRequest(url,
@@ -119,8 +110,6 @@ public class PagesFragment extends Fragment {
 
         // Adding request to request queue
         VolleySingleton.getInstance().addToRequestQueue(movieReq);
-
-        return rootView;
     }
 
     @Override
@@ -136,4 +125,25 @@ public class PagesFragment extends Fragment {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_test_list, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
