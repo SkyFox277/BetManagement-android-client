@@ -59,6 +59,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.TestMultiListActivity"
+            android:label="@string/title_activity_test_multi_list"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.js.android.betmanagement.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.TestMultiList2Activity"
+            android:label="@string/title_activity_test_multi_list2"
+            android:parentActivityName=".activities.TestMultiListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.js.android.betmanagement.activities.TestMultiListActivity" />
+        </activity>
+        <activity
+            android:name=".activities.TestMultiList3Activity"
+            android:label="@string/title_activity_test_multi_list3"
+            android:parentActivityName=".activities.TestMultiList2Activity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.js.android.betmanagement.activities.TestMultiList2Activity" />
+        </activity>
     </application>
 
 </manifest>

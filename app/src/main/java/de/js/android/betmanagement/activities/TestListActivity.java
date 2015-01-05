@@ -54,9 +54,9 @@ public class TestListActivity extends Activity {
         pDialog.setMessage("Loading...");
         pDialog.show();
 
-        // changing action bar color
-        getActionBar().setBackgroundDrawable(
-                new ColorDrawable(Color.parseColor("#1b1b1b")));
+//        // changing action bar color
+//        getActionBar().setBackgroundDrawable(
+//                new ColorDrawable(Color.parseColor("#1b1b1b")));
 
         // Creating volley request obj
         JsonArrayRequest movieReq = new JsonArrayRequest(url,

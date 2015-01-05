@@ -23,8 +23,8 @@ import android.widget.ListView;
 
 import de.js.android.betmanagement.activities.GroupsActivity;
 import de.js.android.betmanagement.activities.SettingsActivity;
-import de.js.android.betmanagement.activities.TestActivity1;
 import de.js.android.betmanagement.activities.TestListActivity;
+import de.js.android.betmanagement.activities.TestMultiListActivity;
 import de.js.android.betmanagement.adapter.NavDrawerListAdapter;
 import de.js.android.betmanagement.fragments.BetItemFragment;
 import de.js.android.betmanagement.fragments.BetItemFragment;
@@ -199,7 +199,8 @@ public class MainActivity extends Activity implements BetItemFragment.OnFragment
 			break;
 
 		case 2:
-			fragment = new CommingSoonFragment();
+			//fragment = new CommingSoonFragment();
+            startActivity(new Intent(MainActivity.this, TestMultiListActivity.class));
 			break;
 
 		case 3:
